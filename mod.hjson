@@ -1,0 +1,15 @@
+displayName: "Space Mayhem"
+
+name: "spacemayhem"
+
+author: "RouterXdd"
+
+main: "spacemayhem.SpaceMayhem"
+
+description: "Its time to go in space"
+
+version: 1
+
+minGameVersion: 138
+
+java: true
