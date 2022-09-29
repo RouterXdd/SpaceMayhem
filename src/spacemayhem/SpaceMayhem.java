@@ -21,14 +21,12 @@ import spacemayhem.graphics.*;
 public class SpaceMayhem extends Mod{
 
     public SpaceMayhem(){
-        Planets.gier.accessible = Planets.gier.alwaysUnlocked = true;
-        Planets.notva.accessible = Planets.notva.alwaysUnlocked = true;
-        Planets.verilus.accessible = Planets.verilus.alwaysUnlocked = true;
     }
 
     @Override
     public void loadContent(){
         new SpaceMayhemItems().load();
+        new SpaceMayhemLiquids().load();
         new SpaceMayhemBlocks().load();
     }
 }
