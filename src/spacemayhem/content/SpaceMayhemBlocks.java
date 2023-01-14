@@ -39,9 +39,11 @@ import mindustry.world.meta.*;
 import spacemayhem.graphics.*;
 import spacemayhem.world.blocks.effect.*;
 import spacemayhem.world.blocks.storage.*;
+import spacemayhem.world.meta.SMEnv;
 
 import static mindustry.Vars.*;
 import static mindustry.type.ItemStack.*;
+import static mindustry.content.Blocks.*;
 
 
 
@@ -49,13 +51,17 @@ public class SpaceMayhemBlocks {
     public static Block
     //environment
     oreIron, oreFrancium, oreUranium, oreOsmium, gasFloor,
+    //production
+    ironDrell, gasCollector,
     //turrets
     flame, volcano, eruption, blow,
     //storage
-    coreIsland,
+    coreIsland, coreCampfire,
     //effect
     platformNode, platformNodeLarge;
     public static void load() {
+        //vanilla
+        pneumaticDrill.envDisabled = laserDrill.envDisabled = blastDrill.envDisabled = Env.space;
         oreIron = new OreBlock(SpaceMayhemItems.iron) {{
         }};
         oreFrancium = new OreBlock(SpaceMayhemItems.francium) {{
@@ -69,7 +75,30 @@ public class SpaceMayhemBlocks {
             solid = true;
             variants = 0;
             canShadow = false;
-            cacheLayer = SMShaders.gasLayer;
+            cacheLayer = SMCacheLayer.gas;
+        }};
+        ironDrell = new Drill("iron-drell"){{
+            requirements(Category.production, with(Items.copper, 24, SpaceMayhemItems.iron, 8));
+            tier = 3;
+            drillTime = 400;
+            size = 2;
+
+            consumeLiquid(Liquids.water, 0.06f).boost();
+        }};
+        gasCollector = new GenericCrafter("gas-collector"){{
+            requirements(Category.crafting, with(Items.silicon, 20));
+            outputLiquid = new LiquidStack(SpaceMayhemLiquids.whiteGas, 8f / 60f);
+            size = 2;
+            hasLiquids = true;
+            rotate = false;
+            solid = true;
+            outputsLiquid = true;
+            envEnabled = SMEnv.gas;
+            drawer = new DrawMulti(new DrawRegion("-bottom"),new DrawLiquidTile(SpaceMayhemLiquids.whiteGas){{drawLiquidLight = true;}},new DrawDefault(),new DrawRegion("-rotator"){{rotateSpeed = 10; spinSprite = true;}});
+            liquidCapacity = 30f;
+            craftTime = 140;
+            lightLiquid = SpaceMayhemLiquids.whiteGas;
+
         }};
         flame = new ItemTurret("flame"){{
             requirements(Category.turret, with(
@@ -202,6 +231,14 @@ public class SpaceMayhemBlocks {
             requirements(Category.effect, with(Items.silicon, 2000));
             alwaysUnlocked = true;
             health = 1000;
+            isFirstTier = true;
+            itemCapacity = 3000;
+            size = 3;
+        }};
+        coreCampfire = new CoreBlock("core-campfire"){{
+            requirements(Category.effect, with(Items.silicon, 1600, Items.lead, 2200, SpaceMayhemItems.iron, 800));
+            alwaysUnlocked = true;
+            health = 3400;
             isFirstTier = true;
             itemCapacity = 3000;
             size = 3;
