@@ -4,5 +4,5 @@ author: "RouterXdd"
 main: "spacemayhem.SpaceMayhem"
 description: "Its time to go in space"
 version: 1
-minGameVersion: 140.3
+minGameVersion: 141
 java: true
