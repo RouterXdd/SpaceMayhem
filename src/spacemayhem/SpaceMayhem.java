@@ -28,7 +28,9 @@ public class SpaceMayhem extends Mod{
         new SpaceMayhemItems().load();
         new SpaceMayhemLiquids().load();
         new SpaceMayhemBlocks().load();
+        new SMLoadouts().load();
         new SpaceMayhemPlanets().load();
         new GierTechTree().load();
+        new ClimTechTree().load();
     }
 }

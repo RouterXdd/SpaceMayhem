@@ -4,10 +4,13 @@ import arc.graphics.*;
 import arc.struct.*;
 import mindustry.type.*;
 
+import static mindustry.content.Items.*;
+
 public class SpaceMayhemItems{
     public static Item
-    iron, francium, uranium, radium, osmium, technetium;
+    iron, francium, uranium, radium, osmium, technetium, gasScrap, gasMatter;
 
+    public static final Seq<Item> climItems = new Seq<>();
     public static void load(){
         //gier
         iron = new Item("iron", Color.valueOf("808080")){{
@@ -36,6 +39,17 @@ public class SpaceMayhemItems{
             hardness = 4;
             cost = 3.3f;
         }};
+        gasScrap = new Item("gas-scrap", Color.valueOf("749898")){{
+            hardness = 2;
+            cost = 2.64f;
+        }};
+        gasMatter = new Item("gas-matter", Color.valueOf("d1ffff")){{
+            hardness = 1;
+            cost = 1.6f;
+        }};
+        climItems.addAll(
+                gasMatter, gasScrap
+        );
     }
 
 }
